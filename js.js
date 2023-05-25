@@ -132,7 +132,7 @@ const translatePos = {
     edges.forEach(edge => {
       ctx.strokeStyle = !edge.shortestPath ? "#000" : "#ff0000";
       if (edge.processed) {
-        ctx.strokeStyle = "#ff0000";
+        ctx.strokeStyle = "#000";
       }
   
       if (edge.shortestPath) {
@@ -157,27 +157,27 @@ const translatePos = {
     });
   
     points.forEach(point => {
-      ctx.fillStyle = "#fff";
+      ctx.fillStyle = "#000";
       const isProcessed = processedNodes.includes(point.name);
       const cost = trackedCosts[point.name];
       if (isProcessed) {
-        ctx.fillStyle = "#ff0000";
+        ctx.fillStyle = "#000";
       }
       
       if(point.processing) {
-         ctx.fillStyle = "#00ff00";
+         ctx.fillStyle = "#000";
       }
   
       if (optimalPath.indexOf(point.name) !== -1) {
-        ctx.fillStyle = "#00ff00";
+        ctx.fillStyle = "#ff0000";
       }
-      ctx.strokeStyle = "#142f9a";
+      ctx.strokeStyle = "#fff";
       ctx.beginPath();
       ctx.arc(point.x, point.y, point.hover ? 7 : 5, 0, 2 * Math.PI);
       ctx.fill();
       ctx.stroke();
       ctx.closePath();
-      ctx.fillStyle = !isProcessed ? "#000" : "#ff0000";
+     
       ctx.font = "bold 20px Arial";
       ctx.textBaseline = "top";
       ctx.fillText(point.name, point.x + 5, point.y + 8);
@@ -187,6 +187,7 @@ const translatePos = {
         ctx.fillText(`(${cost === Infinity ? '∞' : cost})`, point.x + 20, point.y + 8);
       }
     });
+    
   }
   
   function findLowestCostNode() {
@@ -273,12 +274,10 @@ const translatePos = {
     }
   
     if (!trackedCosts[child] || trackedCosts[child] > costToChild) {
-      showNotification(`calculate ${node}-${child}: ${costToChild} < ${trackedCosts[child]}, updating ${child} cost...`, animationSpeed);
+     
       trackedCosts[child] = costToChild;
       trackedParents[child] = node;
-    } else {
-      showNotification(`calculate ${node}-${child}: ${costToChild} > ${trackedCosts[child]}, maintain ${child} cost...`, animationSpeed);
-    }
+    } 
   
     edge.processed = true;
     updateCanvas();
@@ -290,7 +289,7 @@ const translatePos = {
   
   function calculateNode() {
     const node = findLowestCostNode();
-    showNotification(`get lowest cost non-visited node: ${node}`, animationSpeed);
+    
   
     if (!node) {
       calculatePath();
@@ -522,14 +521,14 @@ const translatePos = {
     updateCanvas();
   }
   
-  function showNotification(text, duration) {
+  function showNotification(text) {
     $notification
       .removeClass('hide')
       .html(text); 
     
     notificationTimeout = new Timer(() => {
       $notification.addClass('hide');
-    }, duration);
+    }, 1000);
   }
   
   function selectTool(toolIdx) {
@@ -600,3 +599,4 @@ const translatePos = {
   }
   
   initialize();
+  
