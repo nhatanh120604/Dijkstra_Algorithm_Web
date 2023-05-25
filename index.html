@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>Dijkstra Algorithm</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>    
+    <body>
+      <header id="header">
+        <div id="headertext"> DIJKSTRA'S ALGORITHM FINDS THE SHORTEST PATH</div>
+        <div id="rectangle">
+          <div id="author">AUTHORS:</div>
+          <div id="name">Nguyen Dang Nhat Anh, Phan Ngoc Lan Khanh</div>
+        </div>
+      </header>
+    
+    <canvas id="canvas"></canvas>
+    
+    
+      <div class="controller">
+          <div class="text1">EDIT</div>
+          <button class="button-9" role="button" id="btn_select">SELECT</button>
+          <button class="button-9" role="button" id="btn_addPoint">ADD POINT</button>
+          <button class="button-9" role="button" id="btn_addEdge">ADD EDGE</button>
+
+      </div>
+    
+      <div class="controller2">
+        <div class="text1">FIND SHORTEST PATH</div>
+        <div class="box">
+          <select class="selectbut" id="from"></select>   TO   <select class="selectbut" id="to"></select>
+        </div>
+        
+      <button id="btn_run_algorithm" class="button-10">GENERATE MAP!</button>
+      </div>
+
+    
+   
+
+    <div id="notification">Loading...</div>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js.js"></script>
+    </body>
+    
+</html>
